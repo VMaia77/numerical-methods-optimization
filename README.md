@@ -1,6 +1,6 @@
 ## **Numerical methods and optimization algorithms**
 
-This repository contains implementations covering key topics in numerical analysis, linear algebra, differential equations, and optimization algorithms.
+This repository contains implementations covering key topics in numerical analysis, linear algebra, differential equations and optimization algorithms.
 
 ### Table of Contents
 
