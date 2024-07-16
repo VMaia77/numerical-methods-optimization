@@ -7,7 +7,6 @@ This repository contains implementations covering key topics in numerical analys
 By the end of the initial version, the repository will be structured as follows:
 
  - Linear Systems and Gaussian Elimination
- - Eigenvectors and Eigenvalues
  - Numerical Integration
  - Monte Carlo Simulations
  - Differential Equations
