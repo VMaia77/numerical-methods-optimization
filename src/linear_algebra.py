@@ -1,7 +1,7 @@
 import numpy as np
 
 
-def gaussian_elimination_solver(A, b):
+def gaussian_elimination_matrix_vector_solver(A, b):
 
     A_copy = np.copy(A)
     solution = np.copy(b)
@@ -22,17 +22,18 @@ def gaussian_elimination_solver(A, b):
     return solution
 
 
-def gaussian_elimination_inversion(A):
+def gaussian_elimination_solver(A, B):
+
+    B_was_1d = False
+    if B.ndim == 1:
+        B = B.reshape(-1, 1)
+        B_was_1d = True
 
     n = len(A)
-
-    identity_matrix = np.eye(n)
-
-    augmented_matrix = np.hstack((A, identity_matrix))
+    augmented_matrix = np.hstack((A, B))
     
     # Forward elimination to form an upper triangular matrix
     for k in range(n):
-
         # Partial pivoting
         max_row_index = np.argmax(np.abs(augmented_matrix[k:, k])) + k
         if max_row_index != k:
@@ -41,7 +42,7 @@ def gaussian_elimination_inversion(A):
         # Make the pivot element 1 by dividing the row by the pivot element
         pivot = augmented_matrix[k, k]
         if pivot == 0:
-            raise ValueError("Matrix is singular and cannot be inverted.")
+            raise ValueError("Matrix is singular and cannot be processed.")
         
         augmented_matrix[k] = augmented_matrix[k] / pivot
         
@@ -56,10 +57,19 @@ def gaussian_elimination_inversion(A):
             factor = augmented_matrix[i, k]
             augmented_matrix[i] = augmented_matrix[i] - factor * augmented_matrix[k]
     
-    # Extract the right half of the augmented matrix, which is the inverse of `a`
-    a_inv = augmented_matrix[:, n:]
-    
-    return a_inv
+    # Extract the right half of the augmented matrix
+    result = augmented_matrix[:, n:]
+
+    if B_was_1d:
+        result = result.flatten()
+
+    return result
+
+
+def gaussian_elimination_inversion(A):
+    n = len(A)
+    identity_matrix = np.eye(n)
+    return gaussian_elimination_solver(A, identity_matrix)
 
 
 
@@ -67,10 +77,15 @@ if __name__ == '__main__':
 
     A = np.array([[1., 1.], 
                   [0.035, 0.05]])
+    
     b = np.array([24000., 930.])
 
-    print('solution: ', gaussian_elimination_solver(A, b))
-    print('np solve: ', np.linalg.solve(A, b))
+    print('matrix vector solution: ', gaussian_elimination_solver(A, b))
+    print('matrix vector solver solution: ', gaussian_elimination_matrix_vector_solver(A, b))
+    print('matrix vector np solution: ', np.linalg.solve(A, b))
+
+    print('matrix matrix solution: ', gaussian_elimination_solver(A, A))
+    print('matrix matrix np solution: ', np.linalg.solve(A, A))
 
     print('inverse: ', gaussian_elimination_inversion(A))
     print('np inverse', np.linalg.inv(A))
