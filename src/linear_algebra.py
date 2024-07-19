@@ -4,8 +4,8 @@ import numpy as np
 def gaussian_elimination_matrix_vector_solver(A, b):
 
     A_copy = np.copy(A)
-    solution = np.copy(b)
-    n = len(solution)
+    x = np.copy(b)
+    n = len(x)
     
     # Forward elimination
     for k in range(n - 1):
@@ -13,13 +13,13 @@ def gaussian_elimination_matrix_vector_solver(A, b):
             if A_copy[i, k] != 0.0:
                 factor = A_copy[i, k] / A_copy[k, k]
                 A_copy[i, k:n] = A_copy[i, k:n] - factor * A_copy[k, k:n]
-                solution[i] = solution[i] - factor * solution[k]
+                x[i] = x[i] - factor * x[k]
 
     # Back substitution
     for k in range(n - 1, -1, -1):
-        solution[k] = (solution[k] - np.dot(A_copy[k, k + 1:n], solution[k + 1:n])) / A_copy[k, k]
+        x[k] = (x[k] - np.dot(A_copy[k, k + 1:n], x[k + 1:n])) / A_copy[k, k]
 
-    return solution
+    return x
 
 
 def gaussian_elimination_solver(A, B):
