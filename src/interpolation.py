@@ -1,4 +1,5 @@
 import numpy as np
+from .estimators import least_squares
 import matplotlib.pyplot as plt
 
 
@@ -13,9 +14,7 @@ class PolynomialInterpolation1D:
         self.applied_method = None
 
     def least_squares_solver(self):
-        self.ls_b = self.X.transpose().dot(self.y)
-        self.ls_X = np.matmul(self.X.transpose(), self.X)
-        self.a = np.linalg.solve(self.ls_X, self.ls_b)
+        self.a = least_squares(self.X, self.y)
 
     def solve(self):
         assert self.degree <= len(self.x) - 1, 'degree > n - 1'
@@ -48,8 +47,8 @@ class PolynomialInterpolation1D:
 
 
 
-if __name__ != '__main__':
-    x, y, deg = [-7, -3, 0, 3, 7], [5.1, 1.9, 1.1, 2.1, 4.9], 2
+if __name__ == '__main__':
+    x, y, deg = [-7, -3, 0, 3, 7], [5.1, 1.9, 1.1, 2.1, 4.9], 4
     interpolator = PolynomialInterpolation1D(x, y, deg)
     interpolator.solve()
     print(interpolator.applied_method)
