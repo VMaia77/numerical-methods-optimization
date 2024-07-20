@@ -17,4 +17,8 @@ This repository contains (or will contain) implementations covering key topics i
    - Rectangle method
    - Trapezoidal method
    - Simpson's method
+   - Monte Carlo method
 
+The next versions will contain numerical methods for:
+ - Differential equations
+ - Numerical optimization using gradient methods
