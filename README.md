@@ -10,7 +10,11 @@ This repository contains (or will contain) implementations covering key topics i
    - Compute inverse
 - Interpolation
    - Implementation of 1D polynomial interpolation using Vandermonde matrix and least squares
--  Root-finding algorithms
+- Root-finding algorithms
    - Bisection method
    - Newton-Raphson method
+- Numerical Integration
+   - Rectangle method
+   - Trapezoidal method
+   - Simpson's method
 
