@@ -1,24 +1,5 @@
 import numpy as np
 
-class MonteCarloIntegration:
-
-    def __init__(self, lower_bounds, upper_bounds, n=1000):
-        self.lower_bounds = np.array(lower_bounds)
-        self.upper_bounds = np.array(upper_bounds)
-        self.n = int(n)
-        self.dim = len(lower_bounds)
-
-    def integrate(self):
-        total_sum = sum([f(self.generate_random()) for _ in range(self.n)])
-        hypervolume = self.compute_hypervolume()
-        return hypervolume * total_sum / self.n
-
-    def compute_hypervolume(self):
-        return np.prod(self.upper_bounds - self.lower_bounds)
-
-    def generate_random(self):
-        return self.lower_bounds + (self.upper_bounds - self.lower_bounds) * np.random.uniform(size=self.dim)
-
 
 def rectangle_integral(a, b, f, n=1000):
     h = (b - a) / n
@@ -38,10 +19,30 @@ def simpson_integral(a, b, f, n=1000):
     return (h / 3) * S
 
 
+def monte_carlo_integral(lower_bounds, upper_bounds, f, n=1000):
+
+    lower_bounds = np.array(lower_bounds)
+    upper_bounds = np.array(upper_bounds)
+    n = int(n)
+    dim = len(lower_bounds)
+    
+    def generate_random():
+        return lower_bounds + (upper_bounds - lower_bounds) * np.random.uniform(size=dim)
+    
+    def compute_hypervolume():
+        return np.prod(upper_bounds - lower_bounds)
+    
+    total_sum = sum([f(generate_random()) for _ in range(n)])
+    hypervolume = compute_hypervolume()
+    
+    return hypervolume * (total_sum / n)
+
+
+
 if __name__ == '__main__':
 
     def f(x):
-        return x * x
+        return x * x * x * x
     
     a, b, n = 0, 1, 1e+5
 
@@ -51,5 +52,4 @@ if __name__ == '__main__':
 
     lower_bounds = [a]
     upper_bounds = [b]
-    algorithm = MonteCarloIntegration(lower_bounds, upper_bounds, n)
-    print(algorithm.integrate())
+    print(monte_carlo_integral(lower_bounds, upper_bounds, f, n))
