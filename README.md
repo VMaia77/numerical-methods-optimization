@@ -18,7 +18,9 @@ This repository contains (or will contain) implementations covering key topics i
    - Trapezoidal method
    - Simpson's method
    - Monte Carlo method
+- Differential equations
+   - Euler method
+   - Runge-Kutta method
 
 The next versions will contain numerical methods for:
- - Differential equations
  - Numerical optimization using gradient methods
