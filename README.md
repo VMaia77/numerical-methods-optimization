@@ -27,6 +27,8 @@ This repository contains implementations covering key topics in numerical analys
 
 ### Examples
 
-![Interpolation example](docs/interpolation_figure.png)
+#### Interpolation example
+![](docs/interpolation_figure.png)
 
-![Optimization example](docs/optimization_figure.png)
+#### Optimization example
+![](docs/optimization_figure.png)
