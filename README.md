@@ -1,6 +1,6 @@
 ## **Numerical methods and optimization algorithms**
 
-This repository contains (or will contain) implementations covering key topics in numerical analysis, linear algebra, differential equations and optimization algorithms.
+This repository contains implementations covering key topics in numerical analysis, linear algebra, differential equations and optimization algorithms.
 
 ### Table of Contents
 
@@ -21,6 +21,6 @@ This repository contains (or will contain) implementations covering key topics i
 - Differential equations
    - Euler method
    - Runge-Kutta method
-
-The next versions will contain numerical methods for:
- - Numerical optimization using gradient methods
+- Optimization
+   - Gradient descent (with momentum)
+   - Adam
