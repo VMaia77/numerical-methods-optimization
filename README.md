@@ -24,3 +24,9 @@ This repository contains implementations covering key topics in numerical analys
 - Optimization
    - Gradient descent (with momentum)
    - Adam
+
+### Examples
+
+![Interpolation example](docs/interpolation_figure.png)
+
+![Optimization example](docs/optimization_figure.png)

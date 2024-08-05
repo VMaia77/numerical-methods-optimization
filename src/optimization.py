@@ -79,7 +79,7 @@ def plot_optimization(dim, bounds, f, gd_solutions, gd_scores, adam_solutions, a
         
         # Plot function and optimization paths
         ax.plot(inputs, function_values, label='f(x)')
-        ax.plot(gd_solutions, gd_scores, '.-', color='green', label='Gradient Descent Path')
+        ax.plot(gd_solutions, gd_scores, '.-', color='orange', label='Gradient Descent Path')
         ax.plot(adam_solutions, adam_scores, '.-', color='red', label='Adam Path')
         ax.set_title('Optimization in 1D')
         ax.set_xlabel('x')
@@ -100,7 +100,7 @@ def plot_optimization(dim, bounds, f, gd_solutions, gd_scores, adam_solutions, a
         # Plot contours and optimization paths
         cs = ax.contourf(X, Y, Z, cmap='viridis', levels=50)
         fig.colorbar(cs, ax=ax)
-        ax.plot(gd_solutions[:, 0], gd_solutions[:, 1], '.-', color='green', label='Gradient Descent Path')
+        ax.plot(gd_solutions[:, 0], gd_solutions[:, 1], '.-', color='orange', label='Gradient Descent Path')
         ax.plot(adam_solutions[:, 0], adam_solutions[:, 1], '.-', color='red', label='Adam Path')
         ax.set_title('Optimization Trajectories in 2D')
         ax.set_xlabel('x')
